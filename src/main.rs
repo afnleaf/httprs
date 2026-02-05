@@ -295,6 +295,9 @@ fn main() {
         if ef.ethertype == ETH_P_IP {
             let ipv4 = parse_ipv4(&ef.payload);
             println!("{}", format_ipv4(ipv4));
+        } else {
+            println!("Raw bytes: {:02X?}", 
+                &frame_buffer[..std::cmp::min(64, numbytes as usize)]);
         }
         println!("==========================================================");
         println!("\n\n");
@@ -304,3 +307,4 @@ fn main() {
 
     unsafe { close(sockfd); }
 }
+
